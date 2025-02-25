@@ -11,15 +11,17 @@
 </head>
 <body>
     <header>
-        <div class="logo">
+        <div class="header-decoracion"></div>
+        <div class="logo-contenedor">
             <img src="imagenes/IMG_E3421.JPG" alt="Logo">
         </div>
         <h1>Bienvenido a MD Beauty Center!</h1>
+        <div class="header-decoracion"></div>
     </header>
 
     <section id="servicios">
         <h2>Te gusta lo que ves?</h2>
-        <div class="">
+        <div class="servicios-grid">
             <div class="servicio">
                 <img src="imagenes/IMG_E3417.JPG" alt="Consultoría">
                 <img src="imagenes/IMG_E3418.JPG" alt="Consultoría">
@@ -27,37 +29,35 @@
                 <img src="imagenes/IMG_E3420.JPG" alt="Consultoría">
                 <img src="imagenes/IMG_E4213.JPG" alt="Consultoría">
                 <img src="imagenes/IMG_E4212.JPG" alt="Consultoría">
-                <h3>Consultoría</h3>
-                <p>
-                    ✨Si es asi, dejame decirte que puedes aprender a diseñar estas uñas. Te ofrezco un curso 
-                completo conmigo, Dra. Mayra Novas, te ofrecemos los materiales necesarios y las modelos
-                indicadas para el procedimiento✨
-                📍Dpto. Montevideo, Peñarol📍
-                </p>
-            </div>
-                <h3>Y eso no es lo unico que ofrecemos</h3>
-                <p>✨Tambien puedo enseñarte a hacer pestañas, a aprender a hacer
-                    lo mejor para cada ojo, lo mas llamativo y hermoso. Ambos cursos 
-                tienen partes interactivas y teoricas, tomando apuntes para que el 
-            estudiante pueda aprender incluso en casa y despues de tomar el curso.👁 </p>
-            </div>
-                <h3>Queres saber mas sobre mi?</h3>
-                <p>💖Tambien trabajo de manicurista y lashista, todas las imagenes anteriores son
-                    diseños creados por mi y tengo mucho mas para ofrecer. Puedes contactarme
-                    por el mismo numero que deje abajo para consultar precios.💖</p>
-                    <p>📍Dpto. Montevideo, Garzon y Casavalle</p>
-                </h3>
-                <p>Consultame por:</p>
-                <div class="social-link">
-                    <a href="https://wa.me/59894651659" target="_blank">💬WhatsApp💖</a>
-                </div>                
             </div>
         </div>
+        <h3>Consultoría</h3>
+        <p>
+            ✨Si es así, puedes aprender a diseñar estas uñas conmigo, Dra. Mayra Novas.
+            Ofrecemos los materiales y modelos indicados para el procedimiento.✨
+            📍Dpto. Montevideo, Peñarol📍
+        </p>
+        
+        <h3>Y eso no es lo único que ofrecemos</h3>
+        <p>✨También puedo enseñarte a hacer pestañas, aprender a diseñar cada ojo con el estilo más llamativo y hermoso. 
+            Los cursos incluyen teoría y práctica.👁 </p>
+
+        <h3>¿Quieres saber más sobre mí?</h3>
+        <p>💖También trabajo de manicurista y lashista. Todas las imágenes anteriores son
+            diseños creados por mí y tengo mucho más para ofrecer.💖</p>
+        <p>📍Dpto. Montevideo, Garzón y Casavalle</p>
+
+        <p>Contáctame por:</p>
+        <div class="social-link">
+            <a href="https://wa.me/59894651659" target="_blank">💬WhatsApp💖</a>
+        </div>                
     </section>
 
     <section id="comentarios">
         <h2>Comentarios de Nuestros Clientes</h2>
-        <div id="comentarios-lista"></div>
+        <div id="comentarios-lista">
+            <!-- Aquí se mostrarán las reseñas enviadas -->
+        </div>
         <form id="comentario-form">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" required>
@@ -68,7 +68,6 @@
             <button type="submit">Enviar Reseña</button>
         </form>
     </section>
-
 
     <footer>
         <p>&copy; 2025 Derechos Vanina Salinas.</p>
