@@ -1,11 +1,11 @@
 /* Paleta de colores femeninos */
 :root {
-    --color-principal: #FFB6C1; /* Rosa pastel */
-    --color-secundario: #D8B9D6; /* Lavanda suave */
-    --color-acento: #F1C6D1; /* Rosa más suave */
-    --color-fondo: #F4F4F4; /* Fondo gris claro */
-    --color-texto: #4A4A4A; /* Gris oscuro */
-    --color-boton: #FF8DAA; /* Rosa brillante */
+    --color-principal: #FFB6C1;
+    --color-secundario: #D8B9D6;
+    --color-acento: #F1C6D1;
+    --color-fondo: #F4F4F4;
+    --color-texto: #4A4A4A;
+    --color-boton: #FF8DAA;
 }
 
 body {
@@ -16,28 +16,84 @@ body {
     color: var(--color-texto);
 }
 
-/* ---- LOGO ---- */
-.logo img {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%; /* Lo hace circular */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Sombra llamativa */
-    display: block;
-    margin: 10px auto;
-}
-
-/* ---- HEADER ---- */
+/* ---- HEADER CON DECORACIONES ---- */
 header {
-    background-color: var(--color-principal);
+    background: linear-gradient(135deg, var(--color-principal), var(--color-secundario));
     color: white;
     text-align: center;
-    padding: 30px 0;
+    padding: 40px 0;
+    position: relative;
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-header h1 {
+/* Decoración superior con puntos */
+.header-decor {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-decor::before, .header-decor::after {
+    content: "✦ ✿ ✦";
+    font-size: 1.5rem;
+    color: white;
+    position: absolute;
+    top: -10px;
     font-family: 'Playfair Display', serif;
-    font-size: 2rem;
+}
+
+.header-decor::before {
+    left: 15%;
+}
+
+.header-decor::after {
+    right: 15%;
+}
+
+/* ---- LOGO ---- */
+.logo-container {
+    width: 110px;
+    height: 110px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.logo-container img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+
+/* Efecto decorativo en el logo */
+.logo-container::after {
+    content: "♡";
+    font-size: 1.5rem;
+    color: var(--color-boton);
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ---- TÍTULO ---- */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
     margin: 0;
+}
+
+h1 .highlight {
+    color: var(--color-boton);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* ---- SERVICIOS ---- */
@@ -59,119 +115,24 @@ header h1 {
 /* Contenedor de servicios en cuadrícula 2x2 */
 .servicios-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     justify-content: center;
     align-items: center;
 }
 
 /* Estilo de cada servicio */
-.servicio {
-    text-align: center;
-}
-
 .servicio img {
-    width: 100px; /* Imágenes cuadradas */
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Responsivo: 1 columna en móviles */
+/* ---- RESPONSIVE ---- */
 @media (max-width: 600px) {
     .servicios-grid {
         grid-template-columns: 1fr;
     }
-}
-
-/* ---- COMENTARIOS ---- */
-#comentarios {
-    padding: 40px;
-    background-color: white;
-    margin-top: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-#comentarios h2 {
-    font-family: 'Playfair Display', serif;
-    color: var(--color-principal);
-    font-size: 2.5rem;
-}
-
-#comentarios form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-#comentarios input, #comentarios textarea {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    width: 100%;
-}
-
-/* ---- BOTÓN ---- */
-button {
-    padding: 12px;
-    background-color: var(--color-boton);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #FF6D8F;
-}
-
-/* ---- FOOTER ---- */
-footer {
-    text-align: center;
-    background-color: var(--color-principal);
-    color: white;
-    padding: 15px 0;
-    margin-top: 30px;
-}
-
-footer p {
-    margin: 0;
-}
-.info-box p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    color: #4A4A4A; /* Gris oscuro */
-    line-height: 1.6;
-}
-/* ---- ESTILO PARA EL ENLACE A RED SOCIAL ---- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300&display=swap');
-
-.social-link {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.social-link a {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    text-decoration: none;
-    font-weight: bold;
-    color: #FF8DAA; /* Cambia este color */
-    background: rgba(255, 141, 170, 0.1); /* Fondo suave */
-    padding: 10px 20px;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-    display: inline-block;
-}
-
-.social-link a:hover {
-    background: #FF8DAA; /* Color de fondo más intenso al pasar el mouse */
-    color: white; /* Cambia el color del texto */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
