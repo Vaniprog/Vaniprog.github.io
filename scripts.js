@@ -1,53 +1,64 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const comentarioForm = document.getElementById('comentario-form');
     const comentariosLista = document.getElementById('comentarios-lista');
 
-    // Cargar las reseñas guardadas en localStorage al cargar la página
-    const loadComentarios = () => {
-        const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
-        comentariosLista.innerHTML = ''; // Limpiar lista existente
-        comentarios.forEach(comentario => {
-            const comentarioHTML = 
+    // Referencia a la colección "reseñas" en Firestore
+    const db = firebase.firestore();
+    const comentariosRef = db.collection("reseñas");
+
+    // Cargar reseñas desde Firebase
+    comentariosRef.orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+        comentariosLista.innerHTML = ""; // Limpiar la lista
+        snapshot.forEach((doc) => {
+            const comentario = doc.data();
+            const comentarioHTML = `
                 <div class="reseña">
                     <strong>${comentario.nombre}:</strong>
                     <p>${comentario.reseña}</p>
                 </div>
-            ;
+            `;
             comentariosLista.innerHTML += comentarioHTML;
         });
-    };
+    });
 
-    // Cargar reseñas cuando la página cargue
-    loadComentarios();
-
-    // Escuchar el evento de enviar el formulario
-    comentarioForm.addEventListener('submit', function(event) {
+    // Enviar una nueva reseña
+    comentarioForm.addEventListener('submit', function (event) {
         event.preventDefault();
 
         const nombre = document.getElementById('nombre').value;
         const reseña = document.getElementById('reseña').value;
 
         if (nombre && reseña) {
-            // Crear un objeto de reseña
-            const nuevoComentario = { nombre, reseña };
-
-            // Obtener las reseñas existentes en localStorage (si hay)
-            const comentarios = JSON.parse(localStorage.getItem('comentarios')) || [];
-            comentarios.push(nuevoComentario); // Agregar la nueva reseña
-            localStorage.setItem('comentarios', JSON.stringify(comentarios)); // Guardar en localStorage
-
-            // Añadir la reseña al DOM
-            const comentarioHTML = 
-                <div class="reseña">
-                    <strong>${nombre}:</strong>
-                    <p>${reseña}</p>
-                </div>
-            ;
-            comentariosLista.innerHTML += comentarioHTML; // Mostrar la reseña inmediatamente
+            comentariosRef.add({
+                nombre: nombre,
+                reseña: reseña,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp() // Ordenar por fecha
+            });
 
             // Limpiar el formulario
-            document.getElementById('nombre').value = '';
-            document.getElementById('reseña').value = '';
+            comentarioForm.reset();
         }
     });
-});                   
+});
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyC46qDuFlq24JuFbxWj6JX8K5WsKnAuMZg",
+  authDomain: "academia-36043.firebaseapp.com",
+  projectId: "academia-36043",
+  storageBucket: "academia-36043.firebasestorage.app",
+  messagingSenderId: "927681680683",
+  appId: "1:927681680683:web:50a013c570986c2499a16e",
+  measurementId: "G-S099SRXEZW"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);                  
